@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxqjdxcixqolp"]
+
+[ext_resource type="Texture2D" uid="uid://d3wtrkg1rslcu" path="res://art/visual/Background.jpg" id="1_rw486"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="VecteezyGreen-casino-poker-table-texture-game-background24232274" type="Sprite2D" parent="."]
+position = Vector2(541, 330)
+texture = ExtResource("1_rw486")
