@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxqjdxcixqolp"]
+[gd_scene load_steps=25 format=3 uid="uid://bxqjdxcixqolp"]
 
 [ext_resource type="Script" uid="uid://by3l6q55oejul" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://d3wtrkg1rslcu" path="res://art/visual/Background.jpg" id="1_o5qli"]
@@ -6,7 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://bnlvuin1m6id8" path="res://art/visual/cross-icon.svg" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d26s6im3jbef7" path="res://scenes/player.tscn" id="3_sugp2"]
 [ext_resource type="FontFile" uid="uid://dtlptuq8jtmu6" path="res://art/fonts/Cocogoose Pro Outlined Trial.ttf" id="5_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://clfrj1exstdhi" path="res://art/visual/d1.tres" id="7_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dioc71coagbr1" path="res://art/visual/d1.png" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://ty8hfspb77ca" path="res://art/visual/dice_animation.png" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://bhmu0c855cfbv" path="res://art/visual/d2.tres" id="9_trceg"]
+[ext_resource type="Texture2D" uid="uid://dqwe7i0pt08ns" path="res://art/visual/d3.tres" id="10_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://b307dk0bglsxm" path="res://art/visual/d4.tres" id="11_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://dxxeb2uasmort" path="res://art/visual/d6.tres" id="12_jbj1t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
 bg_color = Color(0.268538, 0.619011, 0.253546, 1)
@@ -21,6 +27,58 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
+atlas = ExtResource("8_tipki")
+region = Rect2(0, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("8_tipki")
+region = Rect2(112, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
+atlas = ExtResource("8_tipki")
+region = Rect2(224, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
+atlas = ExtResource("8_tipki")
+region = Rect2(336, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("8_tipki")
+region = Rect2(448, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
+atlas = ExtResource("8_tipki")
+region = Rect2(560, 0, 112, 112)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkv2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85g3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_choun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya4ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb6dy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trceg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8y0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -191,6 +249,7 @@ offset_left = 320.0
 offset_top = 256.0
 offset_right = 832.0
 offset_bottom = 384.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_trceg")
 
 [node name="MarginContainer" type="MarginContainer" parent="Dice"]
 layout_mode = 2
@@ -205,7 +264,7 @@ layout_mode = 2
 [node name="D1" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("7_o6xl0")
+texture_normal = ExtResource("7_85g3d")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -214,7 +273,7 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D2" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("7_o6xl0")
+texture_normal = ExtResource("9_trceg")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -223,7 +282,7 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D3" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("7_o6xl0")
+texture_normal = ExtResource("10_a8y0u")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -232,7 +291,7 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D4" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("7_o6xl0")
+texture_normal = ExtResource("11_jkv2x")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -241,10 +300,41 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D5" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("7_o6xl0")
+texture_normal = ExtResource("12_jbj1t")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
 texture_focused = ExtResource("7_o6xl0")
+
+[node name="Animations" type="Node2D" parent="Dice/MarginContainer/BoxContainer"]
+
+[node name="AnimD1" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+position = Vector2(48, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+
+[node name="AnimD2" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+position = Vector2(152, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 1
+
+[node name="AnimD3" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+position = Vector2(256, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 2
+
+[node name="AnimD4" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+position = Vector2(360, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 3
+
+[node name="AnimD5" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+position = Vector2(464, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 4
 
 [connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
