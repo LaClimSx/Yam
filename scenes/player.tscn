@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://d26s6im3jbef7"]
+
+[ext_resource type="FontFile" uid="uid://dt6is4otshqa" path="res://art/fonts/Nougat-ExtraBlack.ttf" id="1_3vyb7"]
+
+[sub_resource type="Theme" id="Theme_g2els"]
+default_font = ExtResource("1_3vyb7")
+default_font_size = 16
+
+[node name="Player1" type="VBoxContainer"]
+custom_minimum_size = Vector2(60, 632)
+theme = SubResource("Theme_g2els")
+theme_override_constants/separation = 7
+
+[node name="Name" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "J1"
+horizontal_alignment = 1
+
+[node name="NormalHands" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="One" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Two" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Three" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Four" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Five" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Six" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Total1" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+
+[node name="ComplexHands" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="LittleStraight" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="BigStraight" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Triangle" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Full" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Square" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Yam" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Plus" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Minus" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="ComplexTotal" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+
+[node name="Total" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1

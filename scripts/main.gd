@@ -1,11 +1,15 @@
 extends Control
 
 @export var HANDS = ["one", "two", "three", "four", "five", "six", "littleStraight", "bigStraight", "triangle", "full", "square", "yam", "plus", "minus"]
-var turn = 0
-var current_player = 0
+var turn : int = 0
+var current_player : int = 0
+var grid
+
+var hand : Array[int] = []
 
 func _ready():
-	game()
+	grid = $Grid
+	#game()
 	
 	
 func game():
@@ -19,4 +23,8 @@ func game():
 		
 func play_turn():
 	print(current_player + 1)
-	print(turn)		
+	print(turn)
+
+
+func _on_close_pressed():
+	grid.visible = false

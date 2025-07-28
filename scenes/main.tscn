@@ -1,186 +1,250 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxqjdxcixqolp"]
+[gd_scene load_steps=11 format=3 uid="uid://bxqjdxcixqolp"]
 
 [ext_resource type="Script" uid="uid://by3l6q55oejul" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://d3wtrkg1rslcu" path="res://art/visual/Background.jpg" id="1_o5qli"]
+[ext_resource type="Theme" uid="uid://dyo1wb3t733tx" path="res://art/themes/main_theme.tres" id="1_tefeu"]
+[ext_resource type="Texture2D" uid="uid://bnlvuin1m6id8" path="res://art/visual/cross-icon.svg" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://d26s6im3jbef7" path="res://scenes/player.tscn" id="3_sugp2"]
+[ext_resource type="FontFile" uid="uid://dtlptuq8jtmu6" path="res://art/fonts/Cocogoose Pro Outlined Trial.ttf" id="5_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dioc71coagbr1" path="res://art/visual/d1.png" id="7_o6xl0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+bg_color = Color(0.268538, 0.619011, 0.253546, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(0.116223, 0.294445, 0.109871, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_tefeu")
 script = ExtResource("1_0wfyh")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(541, 330)
 texture = ExtResource("1_o5qli")
 
-[node name="PanelContainer" type="Panel" parent="."]
+[node name="Grid" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 174.0
 offset_right = 1034.0
 offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
 
-[node name="Hands" type="PanelContainer" parent="PanelContainer"]
+[node name="TopBar" type="Panel" parent="Grid"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="Close" type="TextureButton" parent="Grid/TopBar"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -13.0
+offset_right = -8.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("3_jyhfs")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Hands" type="PanelContainer" parent="Grid"]
 layout_mode = 2
+offset_left = 9.0
+offset_top = 16.0
 offset_right = 264.0
 offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tbgi4")
 
-[node name="HandNames" type="VBoxContainer" parent="PanelContainer/Hands"]
+[node name="HandNames" type="VBoxContainer" parent="Grid/Hands"]
 layout_mode = 2
-theme_override_constants/separation = 9
+theme_override_constants/separation = 7
 
-[node name="Players" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Players" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 20
 text = "Joueurs"
 
-[node name="NormalHands" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="NormalHands" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
 text = "Mains standard"
 
-[node name="One" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="One" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Un"
 
-[node name="Two" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Two" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Deux"
 
-[node name="Three" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Three" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Trois"
 
-[node name="Four" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Four" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Quatre"
 
-[node name="Five" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Five" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Cinq"
 
-[node name="Six" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Six" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Six"
 
-[node name="NormalTotal" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="NormalTotal" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
 text = "Total mains standard"
 
-[node name="ComplexHands" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="ComplexHands" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
 text = "Mains spéciales"
 
-[node name="LittleStraight" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="LittleStraight" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Petite suite"
 
-[node name="BigStraight" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="BigStraight" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Grande suite"
 
-[node name="Triangle" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Triangle" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Brelan"
 
-[node name="Full" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Full" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Full"
 
-[node name="Square" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Square" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Carré"
 
-[node name="Yam" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Yam" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Yam"
 
-[node name="Plus" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Plus" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Plus"
 
-[node name="Minus" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Minus" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
 text = "Moins"
 
-[node name="ComplexTotal" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="ComplexTotal" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
 text = "Total mains spéciales"
 
-[node name="Total" type="Label" parent="PanelContainer/Hands/HandNames"]
+[node name="Total" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 20
 text = "Total"
 
-[node name="Players" type="ScrollContainer" parent="PanelContainer"]
+[node name="Players" type="ScrollContainer" parent="Grid"]
 layout_mode = 2
 offset_left = 266.0
+offset_top = 20.0
 offset_right = 858.0
-offset_bottom = 648.0
+offset_bottom = 652.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Players"]
-custom_minimum_size = Vector2(0, 648)
+[node name="HBoxContainer" type="HBoxContainer" parent="Grid/Players"]
+custom_minimum_size = Vector2(0, 632)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Player1" parent="Grid/Players/HBoxContainer" instance=ExtResource("3_sugp2")]
 layout_mode = 2
 
-[node name="Player1" type="VBoxContainer" parent="PanelContainer/Players/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 9
+[node name="Dice" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_left = 320.0
+offset_top = 256.0
+offset_right = 832.0
+offset_bottom = 384.0
 
-[node name="Name" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
+[node name="MarginContainer" type="MarginContainer" parent="Dice"]
 layout_mode = 2
-text = "J1"
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 14
 
-[node name="NormalHands" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="One" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Two" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Three" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
+[node name="BoxContainer" type="BoxContainer" parent="Dice/MarginContainer"]
 layout_mode = 2
 
-[node name="Four" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
+[node name="D1" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+texture_normal = ExtResource("7_o6xl0")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
 
-[node name="Five" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
+[node name="D2" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+texture_normal = ExtResource("7_o6xl0")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
 
-[node name="Six" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
+[node name="D3" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+texture_normal = ExtResource("7_o6xl0")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
 
-[node name="Total1" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
+[node name="D4" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-text = "0"
+texture_normal = ExtResource("7_o6xl0")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
 
-[node name="ComplexHands" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
+[node name="D5" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+texture_normal = ExtResource("7_o6xl0")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
 
-[node name="LittleStraight" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="BigStraight" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Triangle" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Full" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Square" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Yam" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Plus" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="Minus" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="ComplexTotal" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-text = "0"
-
-[node name="Total" type="Label" parent="PanelContainer/Players/HBoxContainer/Player1"]
-layout_mode = 2
-text = "0"
+[connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
