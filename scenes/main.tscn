@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bhmu0c855cfbv" path="res://art/visual/dice/d2.tres" id="9_trceg"]
 [ext_resource type="Texture2D" uid="uid://dqwe7i0pt08ns" path="res://art/visual/dice/d3.tres" id="10_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://b307dk0bglsxm" path="res://art/visual/dice/d4.tres" id="11_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://dxxeb2uasmort" path="res://art/visual/dice/d6.tres" id="12_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://dknow10gcpspn" path="res://art/visual/dice/d6.png" id="12_trceg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
 bg_color = Color(0.116223, 0.294445, 0.109871, 1)
@@ -266,6 +266,7 @@ layout_mode = 2
 [node name="D1" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("7_85g3d")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
@@ -275,6 +276,7 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D2" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("9_trceg")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
@@ -284,6 +286,7 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D3" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("10_a8y0u")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
@@ -293,6 +296,7 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D4" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("11_jkv2x")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
@@ -302,7 +306,8 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="D5" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("12_jbj1t")
+focus_mode = 0
+texture_normal = ExtResource("12_trceg")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -375,4 +380,6 @@ text = "Trier
 "
 
 [connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Board/ButtonsLayout/ThrowButton" to="." method="_on_throw_button_pressed"]
+[connection signal="pressed" from="Board/ButtonsLayout/GridButton" to="." method="_on_grid_button_pressed"]
 [connection signal="pressed" from="Board/SortButton" to="." method="_on_sort_button_pressed"]
