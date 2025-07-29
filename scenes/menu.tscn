@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1al6gv6gqhbr"]
+[gd_scene load_steps=7 format=3 uid="uid://c1al6gv6gqhbr"]
 
-[ext_resource type="Theme" uid="uid://comm8wu618ibm" path="res://art/themes/theme.tres" id="1_con2f"]
+[ext_resource type="Theme" uid="uid://dyo1wb3t733tx" path="res://art/themes/main_theme.tres" id="1_mhnvy"]
 [ext_resource type="Script" uid="uid://dqs6sw1ys7k2h" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://d3wtrkg1rslcu" path="res://art/visual/Background.jpg" id="1_yqeox"]
+[ext_resource type="FontFile" uid="uid://dtlptuq8jtmu6" path="res://art/fonts/Cocogoose Pro Outlined Trial.ttf" id="4_4ytvr"]
+[ext_resource type="FontFile" uid="uid://dt6is4otshqa" path="res://art/fonts/Nougat-ExtraBlack.ttf" id="5_4ytvr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_con2f"]
 bg_color = Color(0.127577, 0.393458, 0.117393, 1)
@@ -18,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_con2f")
+theme = ExtResource("1_mhnvy")
 script = ExtResource("1_vjb58")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -36,6 +38,7 @@ offset_right = 502.0
 offset_bottom = 165.0
 grow_horizontal = 2
 theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_4ytvr")
 theme_override_font_sizes/font_size = 90
 text = "Yam!"
 horizontal_alignment = 1
@@ -66,7 +69,7 @@ text = "Nouvelle partie"
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Parametres"
+text = "Paramètres"
 
 [node name="Quit" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 50)
@@ -76,7 +79,6 @@ text = "Quitter le jeu
 "
 
 [node name="PlayerSettings" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -89,7 +91,6 @@ offset_right = 240.0
 offset_bottom = 165.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_con2f")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerSettings"]
 layout_mode = 1
@@ -124,6 +125,7 @@ text = "-
 
 [node name="Count" type="Label" parent="PlayerSettings/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_4ytvr")
 text = "1"
 
 [node name="Plus" type="Button" parent="PlayerSettings/VBoxContainer/HBoxContainer"]
@@ -135,6 +137,7 @@ text = "+"
 [node name="StartGame" type="Button" parent="PlayerSettings/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Commencer"
 
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]

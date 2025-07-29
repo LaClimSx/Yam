@@ -16,8 +16,8 @@ var throw = 0
 
 func _ready():
 	grid = $Grid
-	diceButtons = [$Dice/MarginContainer/BoxContainer/D1, $Dice/MarginContainer/BoxContainer/D2, $Dice/MarginContainer/BoxContainer/D3, $Dice/MarginContainer/BoxContainer/D4, $Dice/MarginContainer/BoxContainer/D5]
-	animations = [$Dice/MarginContainer/BoxContainer/Animations/AnimD1, $Dice/MarginContainer/BoxContainer/Animations/AnimD2, $Dice/MarginContainer/BoxContainer/Animations/AnimD3, $Dice/MarginContainer/BoxContainer/Animations/AnimD4, $Dice/MarginContainer/BoxContainer/Animations/AnimD5]
+	diceButtons = [$Board/Dice/MarginContainer/BoxContainer/D1, $Board/Dice/MarginContainer/BoxContainer/D2, $Board/Dice/MarginContainer/BoxContainer/D3, $Board/Dice/MarginContainer/BoxContainer/D4, $Board/Dice/MarginContainer/BoxContainer/D5]
+	animations = [$Board/Dice/MarginContainer/BoxContainer/Animations/AnimD1, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD2, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD3, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD4, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD5]
 	game()
 	
 	
@@ -34,10 +34,7 @@ func play_turn():
 	throw = 0
 	animate([true, true, true, true, true])
 	hand = get_rands(5)
-	for i in range(5):
-		var die : TextureButton = diceButtons[i]
-		var path : String = "res://art/visual/d" + str(hand[i]) + ".tres"
-		die.texture_normal = load(path)
+	draw_hand()
 	
 func get_rands(n: int):
 	var result : Array[int] = []
@@ -53,7 +50,7 @@ func animate(chosen_dice: Array[bool]):
 		var die : AnimatedSprite2D = animations[i]
 		if chosen_dice[i]:
 			die.visible = true
-			die.play()
+			die.play(&"", 2.0)
 		else: #can be removed if works properly
 			die.visible = false
 			
@@ -64,5 +61,18 @@ func stop_animation():
 	for dieButton in diceButtons:
 		dieButton.visible = true
 
+
+func draw_hand():
+	for i in range(5):
+		var die : TextureButton = diceButtons[i]
+		var path : String = "res://art/visual/dice/d" + str(hand[i]) + ".tres"
+		die.texture_normal = load(path)
+		die.texture_hover = load(path)
+
 func _on_close_pressed():
 	grid.visible = false
+
+
+func _on_sort_button_pressed():
+	hand.sort()
+	draw_hand()

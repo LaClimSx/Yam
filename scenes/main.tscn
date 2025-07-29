@@ -6,20 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://bnlvuin1m6id8" path="res://art/visual/cross-icon.svg" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d26s6im3jbef7" path="res://scenes/player.tscn" id="3_sugp2"]
 [ext_resource type="FontFile" uid="uid://dtlptuq8jtmu6" path="res://art/fonts/Cocogoose Pro Outlined Trial.ttf" id="5_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://clfrj1exstdhi" path="res://art/visual/d1.tres" id="7_85g3d"]
-[ext_resource type="Texture2D" uid="uid://dioc71coagbr1" path="res://art/visual/d1.png" id="7_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://ty8hfspb77ca" path="res://art/visual/dice_animation.png" id="8_tipki"]
-[ext_resource type="Texture2D" uid="uid://bhmu0c855cfbv" path="res://art/visual/d2.tres" id="9_trceg"]
-[ext_resource type="Texture2D" uid="uid://dqwe7i0pt08ns" path="res://art/visual/d3.tres" id="10_a8y0u"]
-[ext_resource type="Texture2D" uid="uid://b307dk0bglsxm" path="res://art/visual/d4.tres" id="11_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://dxxeb2uasmort" path="res://art/visual/d6.tres" id="12_jbj1t"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
-bg_color = Color(0.268538, 0.619011, 0.253546, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[ext_resource type="Texture2D" uid="uid://clfrj1exstdhi" path="res://art/visual/dice/d1.tres" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://dioc71coagbr1" path="res://art/visual/dice/d1.png" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://ty8hfspb77ca" path="res://art/visual/dice/dice_animation.png" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://bhmu0c855cfbv" path="res://art/visual/dice/d2.tres" id="9_trceg"]
+[ext_resource type="Texture2D" uid="uid://dqwe7i0pt08ns" path="res://art/visual/dice/d3.tres" id="10_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://b307dk0bglsxm" path="res://art/visual/dice/d4.tres" id="11_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://dxxeb2uasmort" path="res://art/visual/dice/d6.tres" id="12_jbj1t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
 bg_color = Color(0.116223, 0.294445, 0.109871, 1)
@@ -27,6 +20,8 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8y0u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
 
@@ -96,7 +91,6 @@ layout_mode = 0
 offset_left = 174.0
 offset_right = 1034.0
 offset_bottom = 648.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
 
 [node name="TopBar" type="Panel" parent="Grid"]
 custom_minimum_size = Vector2(0, 16)
@@ -243,25 +237,33 @@ alignment = 1
 [node name="Player1" parent="Grid/Players/HBoxContainer" instance=ExtResource("3_sugp2")]
 layout_mode = 2
 
-[node name="Dice" type="PanelContainer" parent="."]
+[node name="Board" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a8y0u")
+
+[node name="Dice" type="PanelContainer" parent="Board"]
 layout_mode = 1
-offset_left = 320.0
-offset_top = 256.0
-offset_right = 832.0
-offset_bottom = 384.0
+offset_left = 120.0
+offset_top = 128.0
+offset_right = 648.0
+offset_bottom = 256.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_trceg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Dice"]
+[node name="MarginContainer" type="MarginContainer" parent="Board/Dice"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 14
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 14
 
-[node name="BoxContainer" type="BoxContainer" parent="Dice/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="Board/Dice/MarginContainer"]
 layout_mode = 2
 
-[node name="D1" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+[node name="D1" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("7_85g3d")
@@ -270,7 +272,7 @@ texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
 texture_focused = ExtResource("7_o6xl0")
 
-[node name="D2" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+[node name="D2" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("9_trceg")
@@ -279,7 +281,7 @@ texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
 texture_focused = ExtResource("7_o6xl0")
 
-[node name="D3" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+[node name="D3" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("10_a8y0u")
@@ -288,7 +290,7 @@ texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
 texture_focused = ExtResource("7_o6xl0")
 
-[node name="D4" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+[node name="D4" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("11_jkv2x")
@@ -297,7 +299,7 @@ texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
 texture_focused = ExtResource("7_o6xl0")
 
-[node name="D5" type="TextureButton" parent="Dice/MarginContainer/BoxContainer"]
+[node name="D5" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("12_jbj1t")
@@ -306,35 +308,71 @@ texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
 texture_focused = ExtResource("7_o6xl0")
 
-[node name="Animations" type="Node2D" parent="Dice/MarginContainer/BoxContainer"]
+[node name="Animations" type="Node2D" parent="Board/Dice/MarginContainer/BoxContainer"]
 
-[node name="AnimD1" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+[node name="AnimD1" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
 position = Vector2(48, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 
-[node name="AnimD2" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+[node name="AnimD2" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
 position = Vector2(152, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 frame = 1
 
-[node name="AnimD3" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+[node name="AnimD3" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
 position = Vector2(256, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 frame = 2
 
-[node name="AnimD4" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+[node name="AnimD4" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
 position = Vector2(360, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 frame = 3
 
-[node name="AnimD5" type="AnimatedSprite2D" parent="Dice/MarginContainer/BoxContainer/Animations"]
+[node name="AnimD5" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
 position = Vector2(464, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 frame = 4
 
+[node name="ButtonsLayout" type="HBoxContainer" parent="Board"]
+layout_mode = 0
+offset_top = 296.0
+offset_right = 768.0
+offset_bottom = 360.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ThrowButton" type="Button" parent="Board/ButtonsLayout"]
+custom_minimum_size = Vector2(199, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Lancer"
+
+[node name="GridButton" type="Button" parent="Board/ButtonsLayout"]
+custom_minimum_size = Vector2(331, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Afficher la grille"
+
+[node name="SortButton" type="Button" parent="Board"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.858
+anchor_top = 0.425
+anchor_right = 0.858
+anchor_bottom = 0.425
+offset_left = -49.856
+offset_top = -22.4
+offset_right = 50.144
+offset_bottom = 22.6
+theme_override_font_sizes/font_size = 22
+text = "Trier
+"
+
 [connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Board/SortButton" to="." method="_on_sort_button_pressed"]
