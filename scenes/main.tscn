@@ -317,29 +317,34 @@ texture_focused = ExtResource("7_o6xl0")
 [node name="Animations" type="Node2D" parent="Board/Dice/MarginContainer/BoxContainer"]
 
 [node name="AnimD1" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
 position = Vector2(48, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 
 [node name="AnimD2" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
 position = Vector2(152, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 frame = 1
 
 [node name="AnimD3" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
 position = Vector2(256, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 frame = 2
 
 [node name="AnimD4" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
 position = Vector2(360, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")
 frame = 3
 
 [node name="AnimD5" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
 position = Vector2(464, 47)
 scale = Vector2(0.910714, 0.910714)
 sprite_frames = SubResource("SpriteFrames_jkv2x")

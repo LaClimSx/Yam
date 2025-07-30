@@ -1,6 +1,7 @@
 extends Control
 
 @export var HANDS = ["one", "two", "three", "four", "five", "six", "littleStraight", "bigStraight", "triangle", "full", "square", "yam", "plus", "minus"]
+@export var max_rolling_time : float = 4.0 #Make this a parameter
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var dice_buttons : Array[TextureButton] = [$Board/Dice/MarginContainer/BoxContainer/D1, $Board/Dice/MarginContainer/BoxContainer/D2, $Board/Dice/MarginContainer/BoxContainer/D3, $Board/Dice/MarginContainer/BoxContainer/D4, $Board/Dice/MarginContainer/BoxContainer/D5]
@@ -14,7 +15,7 @@ var turn : int = 0
 var current_player : int = 0
 
 
-var hand : Array[int] = []
+var hand : Array[int] = [0, 0, 0, 0, 0]
 var selected_dice : Array[bool] = [false, false, false, false, false] #Selecting a die means keeping it, so non selected dice get thrown again
 var throw = 0
 
@@ -42,12 +43,15 @@ func game():
 
 
 func play_turn():
-	$Board/ButtonsLayout/ThrowButton.disabled = false
+	$Board/PlayerTags/PlayerNumber.text = str(current_player + 1)
+	$Board/SortButton.visible = false
+	$Board/ButtonsLayout/GridButton.visible = false
 	selected_dice = [false, false, false, false, false]
+	for die_button in dice_buttons : toggle_invisibility(die_button, true)
 	throw = 0
-	animate([true, true, true, true, true])
-	hand = get_rands(5)
-	draw_hand()
+	#animate([true, true, true, true, true])
+	#hand = get_rands(5)
+	#draw_hand()
 
 
 func get_rands(n: int):
@@ -68,7 +72,7 @@ func animate(chosen_dice: Array[bool]):
 			toggle_invisibility(dice_buttons[i], true)
 			die.visible = true
 			die.play(&"", 2.0)
-			get_tree().create_timer(rng.randf_range(1.0, 4.0)).connect("timeout", func() -> void : stop_animation(i))
+			get_tree().create_timer(rng.randf_range(1.0, max_rolling_time)).connect("timeout", func() -> void : stop_animation(i))
 			#Clamping shouldn't be necessary, doing it in case of weird data race issue
 			occuring_animations = clamp(occuring_animations + 1, 0, 5)
 		else: #can be removed if works properly
@@ -83,7 +87,7 @@ func stop_animation(i: int):
 	if occuring_animations == 0:
 		$Board/SortButton.disabled = false
 		#We check here if the turn is over because it happens after the button press
-		if throw <2 :
+		if throw < 3 :
 			$Board/ButtonsLayout/ThrowButton.disabled = false
 
 
@@ -137,11 +141,12 @@ func _on_die_pressed(i: int):
 
 
 func _on_throw_button_pressed():
+	$Board/SortButton.visible = true
+	$Board/ButtonsLayout/GridButton.visible = true
 	var selected_nb : int = selected_dice.count(true)
 	if selected_nb == 5:
 		return
 	throw += 1
-	print(throw)
 	var rands = get_rands(5 - selected_nb)
 	for i in range(5):
 		if !selected_dice[i]:
