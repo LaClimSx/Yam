@@ -3,10 +3,12 @@ extends Control
 @export var HANDS = ["one", "two", "three", "four", "five", "six", "littleStraight", "bigStraight", "triangle", "full", "square", "yam", "plus", "minus"]
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-var dice_buttons : Array[TextureButton]
-var animations : Array[AnimatedSprite2D]
+@onready var dice_buttons : Array[TextureButton] = [$Board/Dice/MarginContainer/BoxContainer/D1, $Board/Dice/MarginContainer/BoxContainer/D2, $Board/Dice/MarginContainer/BoxContainer/D3, $Board/Dice/MarginContainer/BoxContainer/D4, $Board/Dice/MarginContainer/BoxContainer/D5]
+@onready var animations : Array[AnimatedSprite2D] = [$Board/Dice/MarginContainer/BoxContainer/Animations/AnimD1, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD2, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD3, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD4, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD5]
 var occuring_animations : int = 0
-var grid : Panel
+@onready var grid : Panel = $Grid
+@onready var board : Panel = $Board
+@onready var players : Array[Player] = [$Grid/Players/HBoxContainer/Player1]
 
 var turn : int = 0
 var current_player : int = 0
@@ -17,13 +19,14 @@ var selected_dice : Array[bool] = [false, false, false, false, false] #Selecting
 var throw = 0
 
 func _ready():
-	grid = $Grid
-	dice_buttons = [$Board/Dice/MarginContainer/BoxContainer/D1, $Board/Dice/MarginContainer/BoxContainer/D2, $Board/Dice/MarginContainer/BoxContainer/D3, $Board/Dice/MarginContainer/BoxContainer/D4, $Board/Dice/MarginContainer/BoxContainer/D5]
-	animations = [$Board/Dice/MarginContainer/BoxContainer/Animations/AnimD1, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD2, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD3, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD4, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD5]
 	for i in range(5):
 		var die_button = dice_buttons[i]
 		die_button.connect("pressed", func() -> void : _on_die_pressed(i))
-		
+	for i in range(Global.player_nb - 1):
+		var new_player : Player = players[0].duplicate()
+		$Grid/Players/HBoxContainer.add_child(new_player)
+		players.append(new_player)
+		new_player.get_node("Name").text = "J" + str(i + 2)
 	#game()
 	play_turn()
 	
@@ -60,31 +63,28 @@ func animate(chosen_dice: Array[bool]):
 	#for die_button in dice_buttons:
 	#	die_button.visible = false
 	for i in range(5):
-		var time = rng.randf_range(1.0, 15)
-		#print(time)
 		var die : AnimatedSprite2D = animations[i]
 		if chosen_dice[i]:
 			toggle_invisibility(dice_buttons[i], true)
 			die.visible = true
 			die.play(&"", 2.0)
-			get_tree().create_timer(time).connect("timeout", func() -> void : stop_animation(i))
+			get_tree().create_timer(rng.randf_range(1.0, 7.0)).connect("timeout", func() -> void : stop_animation(i))
 			#Clamping shouldn't be necessary, doing it in case of weird data race issue
 			occuring_animations = clamp(occuring_animations + 1, 0, 5)
-			print(occuring_animations)
 		else: #can be removed if works properly
 			die.visible = false
 			
 func stop_animation(i: int):
-	print("stopping animation of die" + str(i))
 	occuring_animations = clamp(occuring_animations - 1, 0, 5)
-	print(occuring_animations)
 	var die : AnimatedSprite2D = animations[i]
 	die.visible = false
 	die.pause()
 	toggle_invisibility(dice_buttons[i], false)
 	if occuring_animations == 0:
 		$Board/SortButton.disabled = false
-		$Board/ButtonsLayout/ThrowButton.disabled = false
+		#We check here if the turn is over because it happens after the button press
+		if throw <2 :
+			$Board/ButtonsLayout/ThrowButton.disabled = false
 
 
 func draw_hand():
@@ -104,6 +104,8 @@ func draw_hand():
 
 func _on_close_pressed():
 	grid.visible = false
+	board.visible = true
+	
 
 #Sorts the dice whilst keeping the selection
 func _on_sort_button_pressed():
@@ -119,11 +121,11 @@ func _on_sort_button_pressed():
 
 func _on_grid_button_pressed():
 	#Compute stuff like playable options
+	board.visible = false
 	grid.visible = true
 	
 #Toggle selection of a die button
 func _on_die_pressed(i: int):
-	print("pressed die at index" + str(i))
 	var die_button = dice_buttons[i]
 	#Swap all pink and white textures
 	die_button.texture_normal = die_button.texture_pressed
@@ -135,8 +137,12 @@ func _on_die_pressed(i: int):
 
 
 func _on_throw_button_pressed():
+	var selected_nb : int = selected_dice.count(true)
+	if selected_nb == 5:
+		return
 	throw += 1
-	var rands = get_rands(selected_dice.count(false))
+	print(throw)
+	var rands = get_rands(5 - selected_nb)
 	for i in range(5):
 		if !selected_dice[i]:
 			hand[i] = rands.pop_back()
@@ -144,9 +150,6 @@ func _on_throw_button_pressed():
 	for b in selected_dice: to_be_thrown.append(not b) 
 	animate(to_be_thrown)
 	draw_hand()
-	
-	if throw == 2:
-		$Board/ButtonsLayout/ThrowButton.disabled = true
 
 #We use this so that the container doesn't resize when we set the node to invisible
 func toggle_invisibility(node: Control, hide: bool):

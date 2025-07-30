@@ -1,15 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://d26s6im3jbef7"]
 
-[ext_resource type="FontFile" uid="uid://dt6is4otshqa" path="res://art/fonts/Nougat-ExtraBlack.ttf" id="1_3vyb7"]
-
-[sub_resource type="Theme" id="Theme_g2els"]
-default_font = ExtResource("1_3vyb7")
-default_font_size = 16
+[ext_resource type="Theme" uid="uid://cuk8ltl1vmf5r" path="res://art/themes/player_theme.tres" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://875bs7r01htp" path="res://scripts/player.gd" id="2_g2els"]
 
 [node name="Player1" type="VBoxContainer"]
 custom_minimum_size = Vector2(60, 632)
-theme = SubResource("Theme_g2els")
+theme = ExtResource("1_3vyb7")
 theme_override_constants/separation = 7
+script = ExtResource("2_g2els")
 
 [node name="Name" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 30)
@@ -30,6 +28,7 @@ layout_mode = 2
 [node name="Two" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+text = "345"
 
 [node name="Three" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
