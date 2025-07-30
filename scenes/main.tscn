@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxqjdxcixqolp"]
+[gd_scene load_steps=26 format=3 uid="uid://bxqjdxcixqolp"]
 
 [ext_resource type="Script" uid="uid://by3l6q55oejul" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://d3wtrkg1rslcu" path="res://art/visual/Background.jpg" id="1_o5qli"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dqwe7i0pt08ns" path="res://art/visual/dice/d3.tres" id="10_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://b307dk0bglsxm" path="res://art/visual/dice/d4.tres" id="11_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://dknow10gcpspn" path="res://art/visual/dice/d6.png" id="12_trceg"]
+[ext_resource type="FontFile" uid="uid://dt6is4otshqa" path="res://art/fonts/Nougat-ExtraBlack.ttf" id="14_a8y0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
 bg_color = Color(0.116223, 0.294445, 0.109871, 1)
@@ -378,6 +379,23 @@ offset_bottom = 22.6
 theme_override_font_sizes/font_size = 22
 text = "Trier
 "
+
+[node name="PlayerTags" type="HBoxContainer" parent="Board"]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 57.0
+alignment = 1
+
+[node name="PlayerTag" type="Label" parent="Board/PlayerTags"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Joueur"
+
+[node name="PlayerNumber" type="Label" parent="Board/PlayerTags"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_a8y0u")
+theme_override_font_sizes/font_size = 40
+text = "1"
 
 [connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Board/ButtonsLayout/ThrowButton" to="." method="_on_throw_button_pressed"]
