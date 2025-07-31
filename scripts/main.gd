@@ -77,7 +77,7 @@ func animate(chosen_dice: Array[bool]):
 		if chosen_dice[i]:
 			toggle_invisibility(dice_buttons[i], true)
 			die.visible = true
-			die.play(&"", 2.0)
+			die.play(&"", -2.0)
 			get_tree().create_timer(rng.randf_range(1.0, max_rolling_time)).connect("timeout", func() -> void : stop_animation(i))
 			#Clamping shouldn't be necessary, doing it in case of weird data race issue
 			occuring_animations = clamp(occuring_animations + 1, 0, 5)
