@@ -1,6 +1,5 @@
 extends Control
 
-@export var HANDS = ["one", "two", "three", "four", "five", "six", "littleStraight", "bigStraight", "triangle", "full", "square", "yam", "plus", "minus"]
 @export var max_rolling_time : float = 4.0 #Make this a parameter
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
@@ -33,7 +32,7 @@ func _ready():
 	
 	
 func game():
-	while turn < HANDS.size():
+	while turn < Global.HANDS.size():
 		while current_player < Global.player_nb:
 			play_turn()
 			current_player += 1
@@ -46,12 +45,19 @@ func play_turn():
 	$Board/PlayerTags/PlayerNumber.text = str(current_player + 1)
 	$Board/SortButton.visible = false
 	$Board/ButtonsLayout/GridButton.visible = false
+	for player in players:
+		player.disable()
 	selected_dice = [false, false, false, false, false]
 	for die_button in dice_buttons : toggle_invisibility(die_button, true)
 	throw = 0
 	#animate([true, true, true, true, true])
 	#hand = get_rands(5)
 	#draw_hand()
+
+
+func end_turn():
+	pass
+
 
 
 func get_rands(n: int):
@@ -64,6 +70,7 @@ func get_rands(n: int):
 func animate(chosen_dice: Array[bool]):
 	$Board/SortButton.disabled = true
 	$Board/ButtonsLayout/ThrowButton.disabled = true
+	$Board/ButtonsLayout/GridButton.disabled = true
 	#for die_button in dice_buttons:
 	#	die_button.visible = false
 	for i in range(5):
@@ -77,7 +84,8 @@ func animate(chosen_dice: Array[bool]):
 			occuring_animations = clamp(occuring_animations + 1, 0, 5)
 		else: #can be removed if works properly
 			die.visible = false
-			
+
+
 func stop_animation(i: int):
 	occuring_animations = clamp(occuring_animations - 1, 0, 5)
 	var die : AnimatedSprite2D = animations[i]
@@ -86,6 +94,7 @@ func stop_animation(i: int):
 	toggle_invisibility(dice_buttons[i], false)
 	if occuring_animations == 0:
 		$Board/SortButton.disabled = false
+		$Board/ButtonsLayout/GridButton.disabled = false
 		#We check here if the turn is over because it happens after the button press
 		if throw < 3 :
 			$Board/ButtonsLayout/ThrowButton.disabled = false
@@ -109,7 +118,7 @@ func draw_hand():
 func _on_close_pressed():
 	grid.visible = false
 	board.visible = true
-	
+
 
 #Sorts the dice whilst keeping the selection
 func _on_sort_button_pressed():
@@ -153,6 +162,26 @@ func _on_throw_button_pressed():
 			hand[i] = rands.pop_back()
 	var to_be_thrown : Array[bool] = []
 	for b in selected_dice: to_be_thrown.append(not b) 
+	var player = players[current_player]
+	####################TESTING###############
+	#print("hand: ", hand)
+	#print("one: ", Utils.check_number(hand, 1))
+	#print("two: ", Utils.check_number(hand, 2))
+	#print("three: ", Utils.check_number(hand, 3))
+	#print("four: ", Utils.check_number(hand, 4))
+	#print("five: ", Utils.check_number(hand, 5))
+	#print("six: ", Utils.check_number(hand, 6))
+	#
+	#print("littleStraight: ", Utils.check_little_straight(hand))
+	#print("bigStraight: ", Utils.check_big_straight(hand))
+	#print("triangle: ", Utils.check_triangle(hand))
+	#print("full: ", Utils.check_full(hand))
+	#print("square: ", Utils.check_square(hand))
+	#print("yam: ", Utils.check_yam(hand))
+	#print("plus: ", Utils.check_plus(hand))
+	#print("minus: ", Utils.check_minus(hand))
+	####################END TESTING###########
+	player.set_labels(hand)
 	animate(to_be_thrown)
 	draw_hand()
 
