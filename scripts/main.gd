@@ -27,24 +27,15 @@ func _ready():
 		$Grid/Players/HBoxContainer.add_child(new_player)
 		players.append(new_player)
 		new_player.get_node("Name").text = "J" + str(i + 2)
-	#game()
 	play_turn()
-	
-	
-func game():
-	while turn < Global.HANDS.size():
-		while current_player < Global.player_nb:
-			play_turn()
-			current_player += 1
-		current_player = 0
-		turn += 1
-	#get_tree().quit()
 
 
 func play_turn():
 	$Board/PlayerTags/PlayerNumber.text = str(current_player + 1)
 	$Board/SortButton.visible = false
 	$Board/ButtonsLayout/GridButton.visible = false
+	$Board/ButtonsLayout/ThrowButton.disabled = false
+	
 	for player in players:
 		player.disable()
 	selected_dice = [false, false, false, false, false]
@@ -56,7 +47,15 @@ func play_turn():
 
 
 func end_turn():
-	pass
+	players[current_player].disable()
+	_on_close_pressed()
+	current_player = (current_player + 1) % Global.player_nb
+	if current_player == 0:
+		turn += 1
+	if turn == Global.HANDS.size():
+		pass
+		#TODO: End game
+	play_turn()
 
 
 

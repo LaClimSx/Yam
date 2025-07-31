@@ -389,6 +389,7 @@ text = "Trier
 layout_mode = 0
 offset_right = 768.0
 offset_bottom = 57.0
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="PlayerTag" type="Label" parent="Board/PlayerTags"]
@@ -403,6 +404,7 @@ theme_override_font_sizes/font_size = 40
 text = "1"
 
 [connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
+[connection signal="turn_finished" from="Grid/Players/HBoxContainer/Player1" to="." method="end_turn"]
 [connection signal="pressed" from="Board/ButtonsLayout/ThrowButton" to="." method="_on_throw_button_pressed"]
 [connection signal="pressed" from="Board/ButtonsLayout/GridButton" to="." method="_on_grid_button_pressed"]
 [connection signal="pressed" from="Board/SortButton" to="." method="_on_sort_button_pressed"]

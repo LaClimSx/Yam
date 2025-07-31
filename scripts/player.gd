@@ -7,10 +7,19 @@ signal turn_finished
 @onready var score_buttons : Array[Button] = [$One, $Two, $Three, $Four, $Five, $Six, $LittleStraight, $BigStraight, $Triangle, $Full, $Square, $Yam, $Plus, $Minus]
 var score: Dictionary = {}
 
+var normal_hand_names : Array
+var complex_hand_names : Array
+
+var normal_total: int = 0
+var complex_total: int = 0
+var total: int = 0
+
 
 func _ready():
 	for button : Button in score_buttons:
 		button.connect("pressed", func() -> void: button_pressed(button))
+	normal_hand_names = score_buttons.slice(0, 6).map(func(button: Button) -> String: return button.name.to_camel_case())
+	complex_hand_names = score_buttons.slice(6).map(func(button: Button) -> String: return button.name.to_camel_case())
 
 #For each hand type, we checked if it has already been played. If so, it stays disabled. Else, we enable the button and set its label to the potential score of the hand
 func set_labels(hand: Array[int]):
@@ -49,6 +58,23 @@ func set_labels(hand: Array[int]):
 		score_buttons[13].disabled = false
 
 
+func clear_labels():
+	for button in score_buttons:
+		var hand_name = button.name.to_camel_case()
+		if !score.has(hand_name):
+			button.text = ""
+
+
+func update_totals(hand_name: String):
+	if normal_hand_names.has(hand_name):
+		normal_total += score[hand_name]
+		$NormalTotal.text = str(normal_total)
+	elif complex_hand_names.has(hand_name):
+		complex_total += score[hand_name]
+		$ComplexTotal.text = str(complex_total)
+	total = normal_total + 37 + complex_total if normal_total >= 63 else normal_total + complex_total
+	$Total.text = str(total)
+
 func disable():
 	for button in score_buttons:
 		button.disabled = true
@@ -58,5 +84,6 @@ func button_pressed(button: Button):
 	var curr_score : int = int(button.text)
 	var hand = button.name.to_camel_case()
 	score[hand] = curr_score
+	update_totals(hand)
+	clear_labels()
 	turn_finished.emit()
-	print("hand: ", hand)
