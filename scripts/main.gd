@@ -110,7 +110,31 @@ func draw_hand():
 
 
 func end_game():
-	pass
+	var scores = []
+	for player in players:
+		scores.append(player.total)
+	var max = scores.max()
+	$EndScreen/VBoxContainer/ScoreTexts/ScoreNumber.text = str(max)
+	var winners = []
+	for i in range(scores.size()):
+		if scores[i] == max:
+			winners.append(i)
+	if winners.size() == 1:
+		$EndScreen/VBoxContainer/VictoryTexts/VictoryNumber.text = str(winners[0] + 1)
+	else:
+		#In case of equality
+		$EndScreen/VBoxContainer/VictoryTexts/VictoryLabel.text = "Victoire des joueurs"
+		var str : String = ""
+		for i in range(winners.size()):
+			if i == winners.size() - 1:
+				str += " et "  + str(winners[i] + 1)
+			elif i == winners.size() - 2:
+				str += str(winners[i] + 1)
+			else:
+				str += str(winners[i] + 1) + ", "
+		$EndScreen/VBoxContainer/VictoryTexts/VictoryNumber.text = str
+	$EndScreen.visible = true
+	
 
 
 func _on_close_pressed():
@@ -131,7 +155,6 @@ func _on_sort_button_pressed():
 
 
 func _on_grid_button_pressed():
-	#Compute stuff like playable options
 	board.visible = false
 	grid.visible = true
 	
@@ -165,6 +188,12 @@ func _on_throw_button_pressed():
 	animate(to_be_thrown)
 	draw_hand()
 
+
+func _on_menu_button_pressed():
+	Global.player_nb = 1
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+
 #We use this so that the container doesn't resize when we set the node to invisible
 func toggle_invisibility(node: Control, hide: bool):
 	if hide:
@@ -173,4 +202,3 @@ func toggle_invisibility(node: Control, hide: bool):
 	else:
 		node.modulate.a = 1.0
 		node.mouse_filter = Control.MOUSE_FILTER_STOP
-		
