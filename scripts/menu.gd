@@ -27,6 +27,7 @@ func _on_start_game_pressed():
 
 
 func _on_settings_pressed():
+	$SettingsPanel.update()
 	$SettingsPanel.visible = true
 
 

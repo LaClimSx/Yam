@@ -1,7 +1,14 @@
 extends Panel
 class_name SettingsPanel
 
+signal closed
+
+func update():
+	$SpeedSlider.value = Global.max_rolling_time
+	$SoundSettings.button_pressed = Global.sound_on
+
 func _on_close_settings_pressed():
+	closed.emit()
 	visible = false
 
 

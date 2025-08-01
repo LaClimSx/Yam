@@ -16,6 +16,8 @@ var hand : Array[int] = [0, 0, 0, 0, 0]
 var selected_dice : Array[bool] = [false, false, false, false, false] #Selecting a die means keeping it, so non selected dice get thrown again
 var throw = 0
 
+var visibilities : Dictionary
+
 func _ready():
 	for i in range(5):
 		var die_button = dice_buttons[i]
@@ -190,6 +192,23 @@ func _on_throw_button_pressed():
 func _on_menu_button_pressed():
 	Global.player_nb = 1
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+
+func _on_settings_button_pressed():
+	visibilities = {board: board.visible, grid: grid.visible, $EndScreen: $EndScreen.visible}
+	for panel in visibilities:
+		if visibilities[panel]:
+			print(panel)
+			panel.visible = false
+	$SettingsPanel.update()
+	$SettingsPanel.visible = true
+
+
+func _on_settings_panel_closed():
+	for panel in visibilities:
+		if visibilities[panel]:
+			print(panel)
+			panel.visible = true
 
 
 #We use this so that the container doesn't resize when we set the node to invisible
