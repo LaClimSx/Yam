@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dyo1wb3t733tx"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dyo1wb3t733tx"]
 
 [ext_resource type="FontFile" uid="uid://bdtul65qip5jh" path="res://art/fonts/Cocogoose Pro Regular Trial.ttf" id="1_mnrg2"]
 
@@ -45,6 +45,62 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mnrg2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktesx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jfl1m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yk4v8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qb3tv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fycnr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afggv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0.73, 0.0851668, 0.4)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78mho"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.2, 1, 0, 0.74902)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bu2hm"]
 bg_color = Color(0.266667, 0.619608, 0.254902, 1)
 border_width_left = 7
@@ -69,4 +125,12 @@ Button/styles/focus = SubResource("StyleBoxFlat_fycnr")
 Button/styles/hover = SubResource("StyleBoxFlat_mnrg2")
 Button/styles/normal = SubResource("StyleBoxFlat_jfl1m")
 Button/styles/pressed = SubResource("StyleBoxFlat_qb3tv")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_mnrg2")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_ktesx")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_jfl1m")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_yk4v8")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_qb3tv")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_fycnr")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_afggv")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_78mho")
 Panel/styles/panel = SubResource("StyleBoxFlat_bu2hm")

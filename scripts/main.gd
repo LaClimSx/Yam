@@ -1,7 +1,5 @@
 extends Control
 
-@export var max_rolling_time : float = 4.0 #Make this a parameter
-
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var dice_buttons : Array[TextureButton] = [$Board/Dice/MarginContainer/BoxContainer/D1, $Board/Dice/MarginContainer/BoxContainer/D2, $Board/Dice/MarginContainer/BoxContainer/D3, $Board/Dice/MarginContainer/BoxContainer/D4, $Board/Dice/MarginContainer/BoxContainer/D5]
 @onready var animations : Array[AnimatedSprite2D] = [$Board/Dice/MarginContainer/BoxContainer/Animations/AnimD1, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD2, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD3, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD4, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD5]
@@ -75,7 +73,7 @@ func animate(chosen_dice: Array[bool]):
 			toggle_invisibility(dice_buttons[i], true)
 			die.visible = true
 			die.play(&"", -2.0)
-			get_tree().create_timer(rng.randf_range(1.0, max_rolling_time)).connect("timeout", func() -> void : stop_animation(i))
+			get_tree().create_timer(rng.randf_range(1.0, Global.max_rolling_time)).connect("timeout", func() -> void : stop_animation(i))
 			#Clamping shouldn't be necessary, doing it in case of weird data race issue
 			occuring_animations = clamp(occuring_animations + 1, 0, 5)
 

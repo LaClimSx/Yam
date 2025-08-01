@@ -7,5 +7,9 @@ extends Node
 @export var HANDS : Array[String] = ["one", "two", "three", "four", "five", "six", "littleStraight", "bigStraight", "triangle", "full", "square", "yam", "plus", "minus"]
 @export var COMPLEX_HAND_VALUES : Dictionary[String, int] = {"littleStraight": 30, "bigStraight": 30, "triangle": 0, "full": 25, "square": 40, "yam": 50, "plus": 0, "minus": 0}
 
+@export var max_rolling_time : float = 4.0
+
 @export var MAX_PLAYER_NB = 6
 var player_nb : int = 1
+
+var sound_on: bool = true
