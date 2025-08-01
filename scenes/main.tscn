@@ -81,6 +81,7 @@ layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_tefeu")
 script = ExtResource("1_0wfyh")
+max_rolling_time = null
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(541, 330)

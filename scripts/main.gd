@@ -41,9 +41,6 @@ func play_turn():
 	selected_dice = [false, false, false, false, false]
 	for die_button in dice_buttons : toggle_invisibility(die_button, true)
 	throw = 0
-	#animate([true, true, true, true, true])
-	#hand = get_rands(5)
-	#draw_hand()
 
 
 func end_turn():
@@ -53,8 +50,8 @@ func end_turn():
 	if current_player == 0:
 		turn += 1
 	if turn == Global.HANDS.size():
-		pass
-		#TODO: End game
+		end_game()
+		return
 	play_turn()
 
 
@@ -81,8 +78,6 @@ func animate(chosen_dice: Array[bool]):
 			get_tree().create_timer(rng.randf_range(1.0, max_rolling_time)).connect("timeout", func() -> void : stop_animation(i))
 			#Clamping shouldn't be necessary, doing it in case of weird data race issue
 			occuring_animations = clamp(occuring_animations + 1, 0, 5)
-		else: #can be removed if works properly
-			die.visible = false
 
 
 func stop_animation(i: int):
@@ -112,6 +107,10 @@ func draw_hand():
 			die.texture_hover = load(pink_path)
 		die.texture_focused = die.texture_normal
 		die.texture_pressed = die.texture_hover
+
+
+func end_game():
+	pass
 
 
 func _on_close_pressed():
@@ -162,24 +161,6 @@ func _on_throw_button_pressed():
 	var to_be_thrown : Array[bool] = []
 	for b in selected_dice: to_be_thrown.append(not b) 
 	var player = players[current_player]
-	####################TESTING###############
-	#print("hand: ", hand)
-	#print("one: ", Utils.check_number(hand, 1))
-	#print("two: ", Utils.check_number(hand, 2))
-	#print("three: ", Utils.check_number(hand, 3))
-	#print("four: ", Utils.check_number(hand, 4))
-	#print("five: ", Utils.check_number(hand, 5))
-	#print("six: ", Utils.check_number(hand, 6))
-	#
-	#print("littleStraight: ", Utils.check_little_straight(hand))
-	#print("bigStraight: ", Utils.check_big_straight(hand))
-	#print("triangle: ", Utils.check_triangle(hand))
-	#print("full: ", Utils.check_full(hand))
-	#print("square: ", Utils.check_square(hand))
-	#print("yam: ", Utils.check_yam(hand))
-	#print("plus: ", Utils.check_plus(hand))
-	#print("minus: ", Utils.check_minus(hand))
-	####################END TESTING###########
 	player.set_labels(hand)
 	animate(to_be_thrown)
 	draw_hand()
