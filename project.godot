@@ -13,7 +13,7 @@ config_version=5
 config/name="Yam"
 run/main_scene="uid://c1al6gv6gqhbr"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://art/visual/icon.svg"
+config/icon="uid://cgma87yt2mke4"
 
 [autoload]
 
@@ -23,3 +23,8 @@ AudioPlayer="*res://scenes/audio_player.tscn"
 [display]
 
 window/stretch/mode="canvas_items"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
