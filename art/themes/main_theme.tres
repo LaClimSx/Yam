@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dyo1wb3t733tx"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://dyo1wb3t733tx"]
 
+[ext_resource type="FontFile" uid="uid://j83fnibiuikt" path="res://art/fonts/KGRedHands.ttf" id="1_jfl1m"]
 [ext_resource type="FontFile" uid="uid://bdtul65qip5jh" path="res://art/fonts/Cocogoose Pro Regular Trial.ttf" id="1_mnrg2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yk4v8"]
@@ -134,3 +135,4 @@ CheckButton/styles/pressed = SubResource("StyleBoxEmpty_fycnr")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_afggv")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_78mho")
 Panel/styles/panel = SubResource("StyleBoxFlat_bu2hm")
+TooltipLabel/fonts/font = ExtResource("1_jfl1m")

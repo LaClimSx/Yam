@@ -331,7 +331,6 @@ theme_override_font_sizes/font_size = 22
 text = "Retourner au menu"
 
 [node name="Grid" type="Panel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 174.0
 offset_right = 1034.0
@@ -376,92 +375,142 @@ theme_override_constants/separation = 7
 
 [node name="Players" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 20
 text = "Joueurs"
 
 [node name="NormalHands" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Mains standard"
 
 [node name="One" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "La somme des 1 de votre main"
+mouse_filter = 1
 text = "Un"
 
 [node name="Two" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "La somme des 2 de votre main"
+mouse_filter = 1
 text = "Deux"
 
 [node name="Three" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "La somme des 3 de votre main"
+mouse_filter = 1
 text = "Trois"
 
 [node name="Four" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "La somme des 4 de votre main"
+mouse_filter = 1
 text = "Quatre"
 
 [node name="Five" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "La somme des 5 de votre main"
+mouse_filter = 1
 text = "Cinq"
 
 [node name="Six" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "La somme des 6 de votre main"
+mouse_filter = 1
 text = "Six"
 
 [node name="NormalTotal" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Total mains standard"
 
 [node name="ComplexHands" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Mains spéciales"
 
 [node name="LittleStraight" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Une petite suite est réalisée si votre main est composée de 1, 2, 3, 4 et 5. 
+Elle rapporte 30 points"
+mouse_filter = 1
 text = "Petite suite"
 
 [node name="BigStraight" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Une grande suite est réalisée si votre main est composée de 2, 3, 4, 5 et 6. 
+Elle rapporte 30 points"
+mouse_filter = 1
 text = "Grande suite"
 
 [node name="Triangle" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Un brelan est obtenu si votre main comporte au moins 3 fois le même dé. 
+Il rapporte le total de la somme des dés"
+mouse_filter = 1
 text = "Brelan"
 
 [node name="Full" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Un full est obtenu si votre main comporte un triplé et une paire de dés (yam compris). 
+Il rapporte 25 points"
+mouse_filter = 1
 text = "Full"
 
 [node name="Square" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Un carré est obtenu si votre main comporte au moins 4 fois le même dé. 
+Il rapporte 40 points"
+mouse_filter = 1
 text = "Carré"
 
 [node name="Yam" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Un yam est obtenu si votre main comporte au moins 5 fois le même dé. 
+Il rapporte 50 points"
+mouse_filter = 1
 text = "Yam"
 
 [node name="Plus" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Le plus et le moins vont de paire. 
+Si vous n'avez pas encore joué le moins ou que la somme des dés est supérieure ou égale au moins, 
+le plus rapporte cette somme"
+mouse_filter = 1
 text = "Plus"
 
 [node name="Minus" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Le plus et le moins vont de paire. 
+Si vous n'avez pas encore joué le plus ou que la somme des dés est inférieure ou égale au moins, 
+le moins rapporte cette somme"
+mouse_filter = 1
 text = "Moins"
 
 [node name="ComplexTotal" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Total mains spéciales"
 
 [node name="Total" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 20
 text = "Total"
