@@ -331,6 +331,7 @@ theme_override_font_sizes/font_size = 22
 text = "Retourner au menu"
 
 [node name="Grid" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 174.0
 offset_right = 1034.0

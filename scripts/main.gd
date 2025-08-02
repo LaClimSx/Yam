@@ -138,12 +138,14 @@ func end_game():
 
 
 func _on_close_pressed():
+	AudioPlayer.play_sound("click")
 	grid.visible = false
 	board.visible = true
 
 
 #Sorts the dice whilst keeping the selection
 func _on_sort_button_pressed():
+	AudioPlayer.play_sound("click")
 	var pairs : Array[Array]
 	for i in range(5):
 		pairs.append([hand[i], selected_dice[i]])
@@ -155,11 +157,13 @@ func _on_sort_button_pressed():
 
 
 func _on_grid_button_pressed():
+	AudioPlayer.play_sound("click")
 	board.visible = false
 	grid.visible = true
 	
 #Toggle selection of a die button
 func _on_die_pressed(i: int):
+	AudioPlayer.play_sound("click")
 	var die_button = dice_buttons[i]
 	#Swap all pink and white textures
 	die_button.texture_normal = die_button.texture_pressed
@@ -171,6 +175,7 @@ func _on_die_pressed(i: int):
 
 
 func _on_throw_button_pressed():
+	AudioPlayer.play_sound("roll")
 	$Board/SortButton.visible = true
 	$Board/ButtonsLayout/GridButton.visible = true
 	var selected_nb : int = selected_dice.count(true)
@@ -190,11 +195,13 @@ func _on_throw_button_pressed():
 
 
 func _on_menu_button_pressed():
+	AudioPlayer.play_sound("click")
 	Global.player_nb = 1
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
 func _on_settings_button_pressed():
+	AudioPlayer.play_sound("click")
 	visibilities = {board: board.visible, grid: grid.visible, $EndScreen: $EndScreen.visible}
 	for panel in visibilities:
 		if visibilities[panel]:
@@ -205,6 +212,7 @@ func _on_settings_button_pressed():
 
 
 func _on_settings_panel_closed():
+	AudioPlayer.play_sound("click")
 	for panel in visibilities:
 		if visibilities[panel]:
 			print(panel)
