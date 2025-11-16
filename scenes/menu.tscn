@@ -23,13 +23,15 @@ shadow_color = Color(0.116223, 0.294445, 0.109871, 1)
 shadow_size = 9
 shadow_offset = Vector2(-5, 5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytvr"]
-bg_color = Color(0, 0.45098, 0.0392157, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_blend = true
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13sgg"]
+bg_color = Color(0, 0.45, 0.0375, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v86rl"]
+bg_color = Color(4.69275e-07, 0.316249, 0.0186522, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -45,15 +47,13 @@ shadow_color = Color(0, 0.317647, 0.0196078, 1)
 shadow_size = 5
 shadow_offset = Vector2(-1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v86rl"]
-bg_color = Color(4.69275e-07, 0.316249, 0.0186522, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13sgg"]
-bg_color = Color(0, 0.45, 0.0375, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ytvr"]
+bg_color = Color(0, 0.45098, 0.0392157, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -167,10 +167,10 @@ alignment = 1
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxFlat_4ytvr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g3eks")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_v86rl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_13sgg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v86rl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g3eks")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4ytvr")
 text = "-
 "
 
@@ -184,10 +184,10 @@ text = "1"
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxFlat_4ytvr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g3eks")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_v86rl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_13sgg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v86rl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g3eks")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4ytvr")
 text = "+"
 
 [node name="StartGame" type="Button" parent="PlayerSettings/VBoxContainer"]
@@ -205,9 +205,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 336.0
-offset_top = 250.0
+offset_top = 201.0
 offset_right = 816.0
-offset_bottom = 508.0
+offset_bottom = 545.0
 grow_horizontal = 1
 grow_vertical = 1
 

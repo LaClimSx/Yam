@@ -1,0 +1,558 @@
+[gd_scene load_steps=29 format=3 uid="uid://bxqjdxcixqolp"]
+
+[ext_resource type="Script" uid="uid://by3l6q55oejul" path="res://scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://d3wtrkg1rslcu" path="res://art/visual/Background.jpg" id="1_o5qli"]
+[ext_resource type="Theme" uid="uid://dyo1wb3t733tx" path="res://art/themes/main_theme.tres" id="1_tefeu"]
+[ext_resource type="Texture2D" uid="uid://bnlvuin1m6id8" path="res://art/visual/cross-icon.svg" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://d26s6im3jbef7" path="res://scenes/player.tscn" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://d361kaf4h10de" path="res://art/visual/settings_icon_white.svg" id="4_jkv2x"]
+[ext_resource type="FontFile" uid="uid://dtlptuq8jtmu6" path="res://art/fonts/Cocogoose Pro Outlined Trial.ttf" id="5_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://clfrj1exstdhi" path="res://art/visual/dice/d1.tres" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://dioc71coagbr1" path="res://art/visual/dice/d1.png" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://ty8hfspb77ca" path="res://art/visual/dice/dice_animation.png" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://bhmu0c855cfbv" path="res://art/visual/dice/d2.tres" id="9_trceg"]
+[ext_resource type="Texture2D" uid="uid://dqwe7i0pt08ns" path="res://art/visual/dice/d3.tres" id="10_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://b307dk0bglsxm" path="res://art/visual/dice/d4.tres" id="11_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://dknow10gcpspn" path="res://art/visual/dice/d6.png" id="12_trceg"]
+[ext_resource type="FontFile" uid="uid://dt6is4otshqa" path="res://art/fonts/Nougat-ExtraBlack.ttf" id="14_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://daobdcr1afosw" path="res://scenes/settings_panel.tscn" id="16_jbj1t"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbj1t"]
+texture = ExtResource("1_o5qli")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(300, 20, 1152, 648)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8y0u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
+atlas = ExtResource("8_tipki")
+region = Rect2(0, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("8_tipki")
+region = Rect2(112, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
+atlas = ExtResource("8_tipki")
+region = Rect2(224, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
+atlas = ExtResource("8_tipki")
+region = Rect2(336, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("8_tipki")
+region = Rect2(448, 0, 112, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
+atlas = ExtResource("8_tipki")
+region = Rect2(560, 0, 112, 112)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkv2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85g3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_choun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya4ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb6dy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trceg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8y0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(0.116223, 0.294445, 0.109871, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
+
+[node name="Main" type="Panel"]
+custom_minimum_size = Vector2(1152, 648)
+theme = ExtResource("1_tefeu")
+theme_override_styles/panel = SubResource("StyleBoxTexture_jbj1t")
+script = ExtResource("1_0wfyh")
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 28.0
+offset_bottom = 25.0
+texture_normal = ExtResource("4_jkv2x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Board" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a8y0u")
+
+[node name="Dice" type="PanelContainer" parent="Board"]
+layout_mode = 1
+offset_left = 120.0
+offset_top = 128.0
+offset_right = 648.0
+offset_bottom = 256.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_trceg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Board/Dice"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 14
+
+[node name="BoxContainer" type="BoxContainer" parent="Board/Dice/MarginContainer"]
+layout_mode = 2
+
+[node name="D1" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("7_85g3d")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
+
+[node name="D2" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("9_trceg")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
+
+[node name="D3" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("10_a8y0u")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
+
+[node name="D4" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("11_jkv2x")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
+
+[node name="D5" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("12_trceg")
+texture_pressed = ExtResource("7_o6xl0")
+texture_hover = ExtResource("7_o6xl0")
+texture_disabled = ExtResource("7_o6xl0")
+texture_focused = ExtResource("7_o6xl0")
+
+[node name="Animations" type="Node2D" parent="Board/Dice/MarginContainer/BoxContainer"]
+
+[node name="AnimD1" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
+position = Vector2(48, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+
+[node name="AnimD2" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
+position = Vector2(152, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 1
+
+[node name="AnimD3" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
+position = Vector2(256, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 2
+
+[node name="AnimD4" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
+position = Vector2(360, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 3
+
+[node name="AnimD5" type="AnimatedSprite2D" parent="Board/Dice/MarginContainer/BoxContainer/Animations"]
+visible = false
+position = Vector2(464, 47)
+scale = Vector2(0.910714, 0.910714)
+sprite_frames = SubResource("SpriteFrames_jkv2x")
+frame = 4
+
+[node name="ButtonsLayout" type="HBoxContainer" parent="Board"]
+layout_mode = 0
+offset_top = 296.0
+offset_right = 768.0
+offset_bottom = 360.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ThrowButton" type="Button" parent="Board/ButtonsLayout"]
+custom_minimum_size = Vector2(199, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Lancer"
+
+[node name="GridButton" type="Button" parent="Board/ButtonsLayout"]
+custom_minimum_size = Vector2(331, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Afficher la grille"
+
+[node name="SortButton" type="Button" parent="Board"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.858
+anchor_top = 0.425
+anchor_right = 0.858
+anchor_bottom = 0.425
+offset_left = -49.856
+offset_top = -22.4
+offset_right = 50.144
+offset_bottom = 22.6
+theme_override_font_sizes/font_size = 22
+text = "Trier
+"
+
+[node name="PlayerTags" type="HBoxContainer" parent="Board"]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 57.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PlayerTag" type="Label" parent="Board/PlayerTags"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Joueur"
+
+[node name="PlayerNumber" type="Label" parent="Board/PlayerTags"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_a8y0u")
+theme_override_font_sizes/font_size = 40
+text = "1"
+
+[node name="EndScreen" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 960.0
+offset_bottom = 512.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen"]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 384.0
+theme_override_constants/separation = 65
+alignment = 1
+
+[node name="VictoryTexts" type="HBoxContainer" parent="EndScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="VictoryLabel" type="Label" parent="EndScreen/VBoxContainer/VictoryTexts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Victoire du joueur"
+
+[node name="VictoryNumber" type="Label" parent="EndScreen/VBoxContainer/VictoryTexts"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_a8y0u")
+theme_override_font_sizes/font_size = 30
+text = "1"
+
+[node name="ScoreTexts" type="HBoxContainer" parent="EndScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="EndScreen/VBoxContainer/ScoreTexts"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Score :"
+
+[node name="ScoreNumber" type="Label" parent="EndScreen/VBoxContainer/ScoreTexts"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_a8y0u")
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="EndButtons" type="HBoxContainer" parent="EndScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="EndGridButton" type="Button" parent="EndScreen/VBoxContainer/EndButtons"]
+custom_minimum_size = Vector2(283, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Revoir la grille"
+
+[node name="MenuButton" type="Button" parent="EndScreen/VBoxContainer/EndButtons"]
+custom_minimum_size = Vector2(346, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Retourner au menu"
+
+[node name="Grid" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 174.0
+offset_right = 1034.0
+offset_bottom = 648.0
+
+[node name="TopBar" type="Panel" parent="Grid"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="Close" type="TextureButton" parent="Grid/TopBar"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -13.0
+offset_right = -8.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("3_jyhfs")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Hands" type="PanelContainer" parent="Grid"]
+layout_mode = 2
+offset_left = 9.0
+offset_top = 16.0
+offset_right = 264.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tbgi4")
+
+[node name="HandNames" type="VBoxContainer" parent="Grid/Hands"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Players" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 20
+text = "Joueurs"
+
+[node name="NormalHands" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
+text = "Mains standard"
+
+[node name="One" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "La somme des 1 de votre main"
+mouse_filter = 1
+text = "Un"
+
+[node name="Two" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "La somme des 2 de votre main"
+mouse_filter = 1
+text = "Deux"
+
+[node name="Three" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "La somme des 3 de votre main"
+mouse_filter = 1
+text = "Trois"
+
+[node name="Four" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "La somme des 4 de votre main"
+mouse_filter = 1
+text = "Quatre"
+
+[node name="Five" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "La somme des 5 de votre main"
+mouse_filter = 1
+text = "Cinq"
+
+[node name="Six" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "La somme des 6 de votre main"
+mouse_filter = 1
+text = "Six"
+
+[node name="NormalTotal" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
+text = "Total mains standard"
+
+[node name="ComplexHands" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
+text = "Mains spéciales"
+
+[node name="LittleStraight" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Une petite suite est réalisée si votre main est composée de 1, 2, 3, 4 et 5. 
+Elle rapporte 30 points"
+mouse_filter = 1
+text = "Petite suite"
+
+[node name="BigStraight" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Une grande suite est réalisée si votre main est composée de 2, 3, 4, 5 et 6. 
+Elle rapporte 30 points"
+mouse_filter = 1
+text = "Grande suite"
+
+[node name="Triangle" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Un brelan est obtenu si votre main comporte au moins 3 fois le même dé. 
+Il rapporte le total de la somme des dés"
+mouse_filter = 1
+text = "Brelan"
+
+[node name="Full" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Un full est obtenu si votre main comporte un triplé et une paire de dés (yam compris). 
+Il rapporte 25 points"
+mouse_filter = 1
+text = "Full"
+
+[node name="Square" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Un carré est obtenu si votre main comporte au moins 4 fois le même dé. 
+Il rapporte 40 points"
+mouse_filter = 1
+text = "Carré"
+
+[node name="Yam" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Un yam est obtenu si votre main comporte au moins 5 fois le même dé. 
+Il rapporte 50 points"
+mouse_filter = 1
+text = "Yam"
+
+[node name="Plus" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Le plus et le moins vont de paire. 
+Si vous n'avez pas encore joué le moins ou que la somme des dés est supérieure ou égale au moins, 
+le plus rapporte cette somme"
+mouse_filter = 1
+text = "Plus"
+
+[node name="Minus" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Le plus et le moins vont de paire. 
+Si vous n'avez pas encore joué le plus ou que la somme des dés est inférieure ou égale au moins, 
+le moins rapporte cette somme"
+mouse_filter = 1
+text = "Moins"
+
+[node name="ComplexTotal" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 18
+text = "Total mains spéciales"
+
+[node name="Total" type="Label" parent="Grid/Hands/HandNames"]
+layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_o6xl0")
+theme_override_font_sizes/font_size = 20
+text = "Total"
+
+[node name="Players" type="ScrollContainer" parent="Grid"]
+layout_mode = 2
+offset_left = 266.0
+offset_top = 20.0
+offset_right = 858.0
+offset_bottom = 652.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Grid/Players"]
+custom_minimum_size = Vector2(0, 632)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Player1" parent="Grid/Players/HBoxContainer" instance=ExtResource("3_sugp2")]
+layout_mode = 2
+
+[node name="SettingsPanel" parent="." instance=ExtResource("16_jbj1t")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 336.0
+offset_top = 200.0
+offset_right = 816.0
+offset_bottom = 458.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Board/ButtonsLayout/ThrowButton" to="." method="_on_throw_button_pressed"]
+[connection signal="pressed" from="Board/ButtonsLayout/GridButton" to="." method="_on_grid_button_pressed"]
+[connection signal="pressed" from="Board/SortButton" to="." method="_on_sort_button_pressed"]
+[connection signal="pressed" from="EndScreen/VBoxContainer/EndButtons/EndGridButton" to="." method="_on_grid_button_pressed"]
+[connection signal="pressed" from="EndScreen/VBoxContainer/EndButtons/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
+[connection signal="turn_finished" from="Grid/Players/HBoxContainer/Player1" to="." method="end_turn"]
+[connection signal="closed" from="SettingsPanel" to="." method="_on_settings_panel_closed"]

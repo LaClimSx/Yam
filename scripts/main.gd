@@ -11,6 +11,8 @@ var occuring_animations : int = 0
 var turn : int = 0
 var current_player : int = 0
 
+const white_dice_tex : Array[CompressedTexture2D] = [preload("res://art/visual/dice/d1.png"), preload("res://art/visual/dice/d2.png"), preload("res://art/visual/dice/d3.png"), preload("res://art/visual/dice/d4.png"), preload("res://art/visual/dice/d5.png"), preload("res://art/visual/dice/d6.png")]
+const pink_dice_tex :  Array[CompressedTexture2D] = [preload("res://art/visual/dice/pink_d1.png"), preload("res://art/visual/dice/pink_d2.png"), preload("res://art/visual/dice/pink_d3.png"), preload("res://art/visual/dice/pink_d4.png"), preload("res://art/visual/dice/pink_d5.png"), preload("res://art/visual/dice/pink_d6.png")]
 
 var hand : Array[int] = [0, 0, 0, 0, 0]
 var selected_dice : Array[bool] = [false, false, false, false, false] #Selecting a die means keeping it, so non selected dice get thrown again
@@ -97,14 +99,14 @@ func stop_animation(i: int):
 func draw_hand():
 	for i in range(5):
 		var die : TextureButton = dice_buttons[i]
-		var path : String = "res://art/visual/dice/d" + str(hand[i]) + ".tres"
-		var pink_path : String = "res://art/visual/dice/pink_d" + str(hand[i]) + ".tres"
+		var white_tex = white_dice_tex[hand[i] - 1]
+		var pink_tex = pink_dice_tex[hand[i] - 1]
 		if selected_dice[i]:
-			die.texture_normal = load(pink_path)
-			die.texture_hover = load(path)
+			die.texture_normal = pink_tex
+			die.texture_hover = white_tex
 		else:
-			die.texture_normal = load(path)
-			die.texture_hover = load(pink_path)
+			die.texture_normal = white_tex
+			die.texture_hover = pink_tex
 		die.texture_focused = die.texture_normal
 		die.texture_pressed = die.texture_hover
 

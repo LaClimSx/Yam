@@ -18,6 +18,10 @@ func _on_speed_slider_drag_ended(value_changed):
 		Global.max_rolling_time = $SpeedSlider.value
 
 
-func _on_sound_settings_toggled(toggled_on):
-	AudioPlayer.play_sound("click")
+func _on_sound_settings_toggled(_toggled_on):
 	Global.sound_on = not Global.sound_on
+	AudioPlayer.play_sound("click")
+
+
+func _on_menu_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")

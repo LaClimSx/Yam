@@ -26,6 +26,7 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 
 [node name="SettingsPanel" type="Panel"]
+custom_minimum_size = Vector2(480, 344)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -34,7 +35,7 @@ anchor_bottom = 0.5
 offset_left = -240.0
 offset_top = -74.0
 offset_right = 240.0
-offset_bottom = 184.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_tl2iu")
@@ -68,7 +69,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="SpeedLabel" type="Label" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 70.0
 offset_right = 416.0
@@ -77,7 +78,7 @@ theme_override_font_sizes/font_size = 20
 text = "Durée de roulement des dés"
 
 [node name="SpeedSlider" type="HSlider" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 120.0
 offset_right = 416.0
@@ -89,7 +90,7 @@ ticks_on_borders = true
 
 [node name="SoundSettings" type="CheckButton" parent="."]
 custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
+layout_mode = 0
 offset_left = 70.0
 offset_top = 175.0
 offset_right = 415.0
@@ -98,6 +99,16 @@ theme_override_font_sizes/font_size = 24
 button_pressed = true
 text = "Sons"
 
+[node name="MenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 243.0
+offset_right = 414.0
+offset_bottom = 298.0
+theme_override_font_sizes/font_size = 20
+text = "Revenir au menu"
+
 [connection signal="pressed" from="TopBar/CloseSettings" to="." method="_on_close_settings_pressed"]
 [connection signal="drag_ended" from="SpeedSlider" to="." method="_on_speed_slider_drag_ended"]
 [connection signal="toggled" from="SoundSettings" to="." method="_on_sound_settings_toggled"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://d26s6im3jbef7" path="res://scenes/player.tscn" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://d361kaf4h10de" path="res://art/visual/settings_icon_white.svg" id="4_jkv2x"]
 [ext_resource type="FontFile" uid="uid://dtlptuq8jtmu6" path="res://art/fonts/Cocogoose Pro Outlined Trial.ttf" id="5_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://clfrj1exstdhi" path="res://art/visual/dice/d1.tres" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://cjttqh234txsa" path="res://art/visual/dice/d2.png" id="6_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://bo0fsfebgu0tf" path="res://art/visual/dice/d3.png" id="7_muem4"]
 [ext_resource type="Texture2D" uid="uid://dioc71coagbr1" path="res://art/visual/dice/d1.png" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dfky3y6t41vaw" path="res://art/visual/dice/d4.png" id="8_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://ty8hfspb77ca" path="res://art/visual/dice/dice_animation.png" id="8_tipki"]
-[ext_resource type="Texture2D" uid="uid://bhmu0c855cfbv" path="res://art/visual/dice/d2.tres" id="9_trceg"]
-[ext_resource type="Texture2D" uid="uid://dqwe7i0pt08ns" path="res://art/visual/dice/d3.tres" id="10_a8y0u"]
-[ext_resource type="Texture2D" uid="uid://b307dk0bglsxm" path="res://art/visual/dice/d4.tres" id="11_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://dknow10gcpspn" path="res://art/visual/dice/d6.png" id="12_trceg"]
+[ext_resource type="Texture2D" uid="uid://cgma87yt2mke4" path="res://art/visual/dice/d5.png" id="9_0ld40"]
+[ext_resource type="Texture2D" uid="uid://dknow10gcpspn" path="res://art/visual/dice/d6.png" id="10_gqmmt"]
 [ext_resource type="FontFile" uid="uid://dt6is4otshqa" path="res://art/fonts/Nougat-ExtraBlack.ttf" id="14_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://daobdcr1afosw" path="res://scenes/settings_panel.tscn" id="16_jbj1t"]
 
@@ -130,7 +130,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("7_85g3d")
+texture_normal = ExtResource("7_o6xl0")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -140,7 +140,7 @@ texture_focused = ExtResource("7_o6xl0")
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("9_trceg")
+texture_normal = ExtResource("6_jbj1t")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -150,7 +150,7 @@ texture_focused = ExtResource("7_o6xl0")
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("10_a8y0u")
+texture_normal = ExtResource("7_muem4")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -160,17 +160,17 @@ texture_focused = ExtResource("7_o6xl0")
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("11_jkv2x")
-texture_pressed = ExtResource("7_o6xl0")
-texture_hover = ExtResource("7_o6xl0")
-texture_disabled = ExtResource("7_o6xl0")
-texture_focused = ExtResource("7_o6xl0")
+texture_normal = ExtResource("7_o6xl0")
+texture_pressed = ExtResource("6_jbj1t")
+texture_hover = ExtResource("7_muem4")
+texture_disabled = ExtResource("8_dp3eg")
+texture_focused = ExtResource("9_0ld40")
 
 [node name="D5" type="TextureButton" parent="Board/Dice/MarginContainer/BoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("12_trceg")
+texture_normal = ExtResource("10_gqmmt")
 texture_pressed = ExtResource("7_o6xl0")
 texture_hover = ExtResource("7_o6xl0")
 texture_disabled = ExtResource("7_o6xl0")
@@ -363,7 +363,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Hands" type="PanelContainer" parent="Grid"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 9.0
 offset_top = 16.0
 offset_right = 264.0
@@ -517,7 +517,7 @@ theme_override_font_sizes/font_size = 20
 text = "Total"
 
 [node name="Players" type="ScrollContainer" parent="Grid"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 266.0
 offset_top = 20.0
 offset_right = 858.0
