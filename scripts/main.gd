@@ -4,9 +4,9 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var dice_buttons : Array[TextureButton] = [$Board/Dice/MarginContainer/BoxContainer/D1, $Board/Dice/MarginContainer/BoxContainer/D2, $Board/Dice/MarginContainer/BoxContainer/D3, $Board/Dice/MarginContainer/BoxContainer/D4, $Board/Dice/MarginContainer/BoxContainer/D5]
 @onready var animations : Array[AnimatedSprite2D] = [$Board/Dice/MarginContainer/BoxContainer/Animations/AnimD1, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD2, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD3, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD4, $Board/Dice/MarginContainer/BoxContainer/Animations/AnimD5]
 var occuring_animations : int = 0
-@onready var grid : Panel = $Grid
+@onready var grid : VBoxContainer = $Grid
 @onready var board : Panel = $Board
-@onready var players : Array[Player] = [$Grid/Players/HBoxContainer/Player1]
+@onready var players : Array[Player] = [$Grid/ContainerPanel/MarginContainer/Hbox/Players/Player1]
 
 var turn : int = 0
 var current_player : int = 0
@@ -26,7 +26,7 @@ func _ready():
 		die_button.connect("pressed", func() -> void : _on_die_pressed(i))
 	for i in range(Global.player_nb - 1):
 		var new_player : Player = players[0].duplicate()
-		$Grid/Players/HBoxContainer.add_child(new_player)
+		$Grid/ContainerPanel/MarginContainer/Hbox/Players.add_child(new_player)
 		players.append(new_player)
 		new_player.get_node("Name").text = "J" + str(i + 2)
 	play_turn()
@@ -115,32 +115,33 @@ func end_game():
 	var scores = []
 	for player in players:
 		scores.append(player.total)
-	var max = scores.max()
-	$EndScreen/VBoxContainer/ScoreTexts/ScoreNumber.text = str(max)
+	var maximum = scores.max()
+	$EndScreen/VBoxContainer/ScoreTexts/ScoreNumber.text = str(maximum)
 	var winners = []
 	for i in range(scores.size()):
-		if scores[i] == max:
+		if scores[i] == maximum:
 			winners.append(i)
 	if winners.size() == 1:
 		$EndScreen/VBoxContainer/VictoryTexts/VictoryNumber.text = str(winners[0] + 1)
 	else:
 		#In case of equality
 		$EndScreen/VBoxContainer/VictoryTexts/VictoryLabel.text = "Victoire des joueurs"
-		var str : String = ""
+		var str_builder : String = ""
 		for i in range(winners.size()):
 			if i == winners.size() - 1:
-				str += " et "  + str(winners[i] + 1)
+				str_builder += " et "  + str(winners[i] + 1)
 			elif i == winners.size() - 2:
-				str += str(winners[i] + 1)
+				str_builder += str(winners[i] + 1)
 			else:
-				str += str(winners[i] + 1) + ", "
-		$EndScreen/VBoxContainer/VictoryTexts/VictoryNumber.text = str
+				str_builder += str(winners[i] + 1) + ", "
+		$EndScreen/VBoxContainer/VictoryTexts/VictoryNumber.text = str_builder
 	$EndScreen.visible = true
 	
 
 
-func _on_close_pressed():
-	AudioPlayer.play_sound("click")
+func _on_close_pressed(play_sound: bool = true):
+	if play_sound:
+		AudioPlayer.play_sound("click")
 	grid.visible = false
 	board.visible = true
 
@@ -202,30 +203,41 @@ func _on_menu_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
-func _on_settings_button_pressed():
-	AudioPlayer.play_sound("click")
+func _on_settings_button_pressed(play_sound: bool = true):
+	if play_sound:
+		AudioPlayer.play_sound("click")
 	visibilities = {board: board.visible, grid: grid.visible, $EndScreen: $EndScreen.visible}
 	for panel in visibilities:
 		if visibilities[panel]:
-			print(panel)
 			panel.visible = false
 	$SettingsPanel.update()
 	$SettingsPanel.visible = true
 
 
-func _on_settings_panel_closed():
-	AudioPlayer.play_sound("click")
+func _on_settings_panel_closed(play_sound: bool = true):
+	if play_sound:
+		AudioPlayer.play_sound("click")
 	for panel in visibilities:
 		if visibilities[panel]:
-			print(panel)
 			panel.visible = true
 
 
 #We use this so that the container doesn't resize when we set the node to invisible
-func toggle_invisibility(node: Control, hide: bool):
-	if hide:
+func toggle_invisibility(node: Control, hide_it: bool):
+	if hide_it:
 		node.modulate.a = 0.0
 		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
 		node.modulate.a = 1.0
 		node.mouse_filter = Control.MOUSE_FILTER_STOP
+
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("escape"):
+		if $SettingsPanel.visible:
+			$SettingsPanel.on_close_settings_pressed(false)
+		elif grid.visible:
+			_on_close_pressed(false)
+		else:
+			_on_settings_button_pressed(false)
