@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://875bs7r01htp" path="res://scripts/player.gd" id="2_g2els"]
 
 [node name="Player1" type="VBoxContainer"]
-custom_minimum_size = Vector2(60, 632)
+custom_minimum_size = Vector2(60, 0)
 theme = ExtResource("1_3vyb7")
 theme_override_constants/separation = 7
 script = ExtResource("2_g2els")

@@ -77,12 +77,26 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
 bg_color = Color(0.116223, 0.294445, 0.109871, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
+shadow_color = Color(0.11764706, 0.29411766, 0.10980392, 1)
+shadow_size = 9
+shadow_offset = Vector2(-5, 4.5)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muem4"]
+bg_color = Color(0.266667, 0.619608, 0.254902, 1)
+border_width_left = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.138554, 0.340711, 0.131379, 1)
+border_blend = true
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.116223, 0.294445, 0.109871, 1)
+shadow_size = 9
+shadow_offset = Vector2(-5, 5)
 
 [node name="Main" type="Panel"]
 custom_minimum_size = Vector2(1152, 648)
@@ -330,20 +344,27 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Retourner au menu"
 
-[node name="Grid" type="Panel" parent="."]
+[node name="Grid" type="VBoxContainer" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 174.0
-offset_right = 1034.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -325.0
+offset_right = 182.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="TopBar" type="Panel" parent="Grid"]
 custom_minimum_size = Vector2(0, 16)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbj1t")
 
 [node name="Close" type="TextureButton" parent="Grid/TopBar"]
 layout_mode = 1
@@ -362,26 +383,33 @@ texture_normal = ExtResource("3_jyhfs")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Hands" type="PanelContainer" parent="Grid"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 16.0
-offset_right = 264.0
-offset_bottom = 648.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_tbgi4")
+[node name="ContainerPanel" type="PanelContainer" parent="Grid"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_muem4")
 
-[node name="HandNames" type="VBoxContainer" parent="Grid/Hands"]
+[node name="MarginContainer" type="MarginContainer" parent="Grid/ContainerPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 40
+
+[node name="Hbox" type="HBoxContainer" parent="Grid/ContainerPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HandNames" type="VBoxContainer" parent="Grid/ContainerPanel/MarginContainer/Hbox"]
 layout_mode = 2
 theme_override_constants/separation = 7
+alignment = 1
 
-[node name="Players" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Players" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 20
 text = "Joueurs"
 
-[node name="NormalHands" type="Label" parent="Grid/Hands/HandNames"]
+[node name="NormalHands" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
 un bonus de 37 points est ajouté au total"
@@ -390,43 +418,43 @@ theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Mains standard"
 
-[node name="One" type="Label" parent="Grid/Hands/HandNames"]
+[node name="One" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "La somme des 1 de votre main"
 mouse_filter = 1
 text = "Un"
 
-[node name="Two" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Two" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "La somme des 2 de votre main"
 mouse_filter = 1
 text = "Deux"
 
-[node name="Three" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Three" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "La somme des 3 de votre main"
 mouse_filter = 1
 text = "Trois"
 
-[node name="Four" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Four" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "La somme des 4 de votre main"
 mouse_filter = 1
 text = "Quatre"
 
-[node name="Five" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Five" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "La somme des 5 de votre main"
 mouse_filter = 1
 text = "Cinq"
 
-[node name="Six" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Six" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "La somme des 6 de votre main"
 mouse_filter = 1
 text = "Six"
 
-[node name="NormalTotal" type="Label" parent="Grid/Hands/HandNames"]
+[node name="NormalTotal" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
 un bonus de 37 points est ajouté au total"
@@ -435,56 +463,56 @@ theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Total mains standard"
 
-[node name="ComplexHands" type="Label" parent="Grid/Hands/HandNames"]
+[node name="ComplexHands" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Mains spéciales"
 
-[node name="LittleStraight" type="Label" parent="Grid/Hands/HandNames"]
+[node name="LittleStraight" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Une petite suite est réalisée si votre main est composée de 1, 2, 3, 4 et 5. 
 Elle rapporte 30 points"
 mouse_filter = 1
 text = "Petite suite"
 
-[node name="BigStraight" type="Label" parent="Grid/Hands/HandNames"]
+[node name="BigStraight" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Une grande suite est réalisée si votre main est composée de 2, 3, 4, 5 et 6. 
 Elle rapporte 30 points"
 mouse_filter = 1
 text = "Grande suite"
 
-[node name="Triangle" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Triangle" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Un brelan est obtenu si votre main comporte au moins 3 fois le même dé. 
 Il rapporte le total de la somme des dés"
 mouse_filter = 1
 text = "Brelan"
 
-[node name="Full" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Full" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Un full est obtenu si votre main comporte un triplé et une paire de dés (yam compris). 
 Il rapporte 25 points"
 mouse_filter = 1
 text = "Full"
 
-[node name="Square" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Square" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Un carré est obtenu si votre main comporte au moins 4 fois le même dé. 
 Il rapporte 40 points"
 mouse_filter = 1
 text = "Carré"
 
-[node name="Yam" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Yam" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Un yam est obtenu si votre main comporte 5 fois le même dé. 
 Il rapporte 50 points"
 mouse_filter = 1
 text = "Yam"
 
-[node name="Plus" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Plus" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Le plus et le moins vont de paire. 
 Si vous n'avez pas encore joué le moins ou que la somme des dés est supérieure ou égale au moins, 
@@ -492,7 +520,7 @@ le plus rapporte cette somme"
 mouse_filter = 1
 text = "Plus"
 
-[node name="Minus" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Minus" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Le plus et le moins vont de paire. 
 Si vous n'avez pas encore joué le plus ou que la somme des dés est inférieure ou égale au moins, 
@@ -500,14 +528,14 @@ le moins rapporte cette somme"
 mouse_filter = 1
 text = "Moins"
 
-[node name="ComplexTotal" type="Label" parent="Grid/Hands/HandNames"]
+[node name="ComplexTotal" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 18
 text = "Total mains spéciales"
 
-[node name="Total" type="Label" parent="Grid/Hands/HandNames"]
+[node name="Total" type="Label" parent="Grid/ContainerPanel/MarginContainer/Hbox/HandNames"]
 layout_mode = 2
 tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
 un bonus de 37 points est ajouté au total"
@@ -516,21 +544,14 @@ theme_override_fonts/font = ExtResource("5_o6xl0")
 theme_override_font_sizes/font_size = 20
 text = "Total"
 
-[node name="Players" type="ScrollContainer" parent="Grid"]
-layout_mode = 0
-offset_left = 266.0
-offset_top = 20.0
-offset_right = 858.0
-offset_bottom = 652.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Grid/Players"]
-custom_minimum_size = Vector2(0, 632)
+[node name="Players" type="HBoxContainer" parent="Grid/ContainerPanel/MarginContainer/Hbox"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Player1" parent="Grid/Players/HBoxContainer" instance=ExtResource("3_sugp2")]
+[node name="Player1" parent="Grid/ContainerPanel/MarginContainer/Hbox/Players" instance=ExtResource("3_sugp2")]
 layout_mode = 2
+alignment = 1
 
 [node name="SettingsPanel" parent="." instance=ExtResource("16_jbj1t")]
 visible = false
@@ -554,5 +575,5 @@ grow_vertical = 1
 [connection signal="pressed" from="EndScreen/VBoxContainer/EndButtons/EndGridButton" to="." method="_on_grid_button_pressed"]
 [connection signal="pressed" from="EndScreen/VBoxContainer/EndButtons/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Grid/TopBar/Close" to="." method="_on_close_pressed"]
-[connection signal="turn_finished" from="Grid/Players/HBoxContainer/Player1" to="." method="end_turn"]
+[connection signal="turn_finished" from="Grid/ContainerPanel/MarginContainer/Hbox/Players/Player1" to="." method="end_turn"]
 [connection signal="closed" from="SettingsPanel" to="." method="_on_settings_panel_closed"]
