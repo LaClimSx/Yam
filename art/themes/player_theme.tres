@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cuk8ltl1vmf5r"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cuk8ltl1vmf5r"]
 
 [ext_resource type="FontFile" uid="uid://dt6is4otshqa" path="res://art/fonts/Nougat-ExtraBlack.ttf" id="1_0c6fn"]
+[ext_resource type="FontFile" uid="uid://j83fnibiuikt" path="res://art/fonts/KGRedHands.ttf" id="1_ptdtd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0c6fn"]
 
@@ -49,3 +50,4 @@ Button/styles/disabled = SubResource("StyleBoxEmpty_0c6fn")
 Button/styles/focus = SubResource("StyleBoxFlat_0c6fn")
 Button/styles/hover = SubResource("StyleBoxFlat_ptdtd")
 Button/styles/normal = SubResource("StyleBoxFlat_3vyb7")
+TooltipLabel/fonts/font = ExtResource("1_ptdtd")

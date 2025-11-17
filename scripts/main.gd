@@ -207,7 +207,6 @@ func _on_settings_button_pressed():
 	visibilities = {board: board.visible, grid: grid.visible, $EndScreen: $EndScreen.visible}
 	for panel in visibilities:
 		if visibilities[panel]:
-			print(panel)
 			panel.visible = false
 	$SettingsPanel.update()
 	$SettingsPanel.visible = true
@@ -217,7 +216,6 @@ func _on_settings_panel_closed():
 	AudioPlayer.play_sound("click")
 	for panel in visibilities:
 		if visibilities[panel]:
-			print(panel)
 			panel.visible = true
 
 

@@ -5,6 +5,7 @@ func _ready():
 	if !Global.ready:
 		await Global.ready
 	$PlayerSettings/VBoxContainer/HBoxContainer/Count.text = str(Global.player_nb)
+	$SettingsPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ReturnButton.visible = false
 
 
 func _on_start_pressed():

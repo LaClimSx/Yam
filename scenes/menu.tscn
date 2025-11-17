@@ -199,11 +199,6 @@ text = "Commencer"
 [node name="SettingsPanel" parent="." instance=ExtResource("6_g3eks")]
 visible = false
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = 336.0
 offset_top = 201.0
 offset_right = 816.0

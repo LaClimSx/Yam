@@ -19,35 +19,47 @@ horizontal_alignment = 1
 [node name="NormalHands" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
 horizontal_alignment = 1
 
 [node name="One" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "La somme des 1 de votre main"
 
 [node name="Two" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "La somme des 2 de votre main"
 
 [node name="Three" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "La somme des 3 de votre main"
 
 [node name="Four" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "La somme des 4 de votre main"
 
 [node name="Five" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "La somme des 5 de votre main"
 
 [node name="Six" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "La somme des 6 de votre main"
 
 [node name="NormalTotal" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
 theme_override_font_sizes/font_size = 18
 text = "0"
 horizontal_alignment = 1
@@ -60,34 +72,52 @@ horizontal_alignment = 1
 [node name="LittleStraight" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Une petite suite est réalisée si votre main est composée de 1, 2, 3, 4 et 5. 
+Elle rapporte 30 points"
 
 [node name="BigStraight" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Une grande suite est réalisée si votre main est composée de 2, 3, 4, 5 et 6. 
+Elle rapporte 30 points"
 
 [node name="Triangle" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Un brelan est obtenu si votre main comporte au moins 3 fois le même dé. 
+Il rapporte le total de la somme des dés"
 
 [node name="Full" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Un full est obtenu si votre main comporte un triplé et une paire de dés (yam compris). 
+Il rapporte 25 points"
 
 [node name="Square" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Un carré est obtenu si votre main comporte au moins 4 fois le même dé. 
+Il rapporte 40 points"
 
 [node name="Yam" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Un yam est obtenu si votre main comporte 5 fois le même dé. 
+Il rapporte 50 points"
 
 [node name="Plus" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Le plus et le moins vont de paire. 
+Si vous n'avez pas encore joué le moins ou que la somme des dés est supérieure ou égale au moins, 
+le plus rapporte cette somme"
 
 [node name="Minus" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+tooltip_text = "Le plus et le moins vont de paire. 
+Si vous n'avez pas encore joué le plus ou que la somme des dés est inférieure ou égale au moins, 
+le moins rapporte cette somme"
 
 [node name="ComplexTotal" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 27)
@@ -99,6 +129,9 @@ horizontal_alignment = 1
 [node name="Total" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+tooltip_text = "Si le total des points des mains sandard est supérieur ou égal à 63, 
+un bonus de 37 points est ajouté au total"
+mouse_filter = 1
 theme_override_font_sizes/font_size = 20
 text = "0"
 horizontal_alignment = 1
