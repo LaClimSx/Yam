@@ -139,8 +139,9 @@ func end_game():
 	
 
 
-func _on_close_pressed():
-	AudioPlayer.play_sound("click")
+func _on_close_pressed(play_sound: bool = true):
+	if play_sound:
+		AudioPlayer.play_sound("click")
 	grid.visible = false
 	board.visible = true
 
@@ -202,8 +203,9 @@ func _on_menu_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
-func _on_settings_button_pressed():
-	AudioPlayer.play_sound("click")
+func _on_settings_button_pressed(play_sound: bool = true):
+	if play_sound:
+		AudioPlayer.play_sound("click")
 	visibilities = {board: board.visible, grid: grid.visible, $EndScreen: $EndScreen.visible}
 	for panel in visibilities:
 		if visibilities[panel]:
@@ -212,8 +214,9 @@ func _on_settings_button_pressed():
 	$SettingsPanel.visible = true
 
 
-func _on_settings_panel_closed():
-	AudioPlayer.play_sound("click")
+func _on_settings_panel_closed(play_sound: bool = true):
+	if play_sound:
+		AudioPlayer.play_sound("click")
 	for panel in visibilities:
 		if visibilities[panel]:
 			panel.visible = true
@@ -227,3 +230,14 @@ func toggle_invisibility(node: Control, hide_it: bool):
 	else:
 		node.modulate.a = 1.0
 		node.mouse_filter = Control.MOUSE_FILTER_STOP
+
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("escape"):
+		if $SettingsPanel.visible:
+			$SettingsPanel.on_close_settings_pressed(false)
+		elif grid.visible:
+			_on_close_pressed(false)
+		else:
+			_on_settings_button_pressed(false)
