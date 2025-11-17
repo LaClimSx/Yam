@@ -479,7 +479,7 @@ text = "Carré"
 
 [node name="Yam" type="Label" parent="Grid/Hands/HandNames"]
 layout_mode = 2
-tooltip_text = "Un yam est obtenu si votre main comporte au moins 5 fois le même dé. 
+tooltip_text = "Un yam est obtenu si votre main comporte 5 fois le même dé. 
 Il rapporte 50 points"
 mouse_filter = 1
 text = "Yam"
